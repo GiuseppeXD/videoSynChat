@@ -3,7 +3,6 @@ import { useHistory } from 'react-router-dom';
 import { FiAirplay } from 'react-icons/fi';
 
 import api from '../services/api'
-import axios from 'axios';
 
 import '../../assets/stylesheets/home.scss';
 
@@ -34,7 +33,7 @@ const Home= () => {
             </div>
             <div className="input-group">
                 
-                <input type="text" id="inputUsername" className="form-control" placeholder="Username" onChange={event => setName(event.target.value)}/>
+                <input type="text" id="inputUsername" className="form-control" placeholder="Your Name" onChange={event => setName(event.target.value)}/>
                 
                 <button id="createRoomButton" className="botton" onClick={handleToRoom}><FiAirplay/></button>   
             </div>

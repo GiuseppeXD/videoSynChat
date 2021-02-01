@@ -1,5 +1,6 @@
 import React, { useState, useEffect, useContext} from 'react';
 import {useParams} from "react-router-dom";
+import { useHistory } from 'react-router-dom';
 import { FiPlay } from 'react-icons/fi';
 import startChannel from '../channels/room_channel'
 
@@ -15,17 +16,24 @@ const Room = props => {
     const [roomChannel, setRoomChannel] = useState(null);
     const [data, setData] = useState({});
     const { id } = useParams();
+    const history = useHistory();
 
-    useEffect(() => {
+    useEffect(async () => {
         setUserName(localStorage.getItem('videoSynChatUserName'));
-        api.get(`api/room/${id}`).then(response=>{
-            //console.log(response)
-            //console.log(response.data.messages)
-            //console.log(response.data.room)
-            setUrlIFrame(response.data.room.url_video);
-            setMessages(response.data.messages);
-            setRoomChannel(startChannel(id, (someData) => { setData(someData)}));
-        });
+        try{
+            let apiResponse = await api.get(`api/room/${id}`).then(response=>{
+                //console.log(response)
+                //console.log(response.data.messages)
+                //console.log(response.data.room)
+                setUrlIFrame(response.data.room.url_video);
+                setMessages(response.data.messages);
+                setRoomChannel(startChannel(id, (someData) => { setData(someData)}));
+            });
+        }catch(err){
+            console.log(err)
+            alert('Not Found Room');
+            history.push('');
+        }
         //then websocket sequencial
     },[]);
 
@@ -66,6 +74,10 @@ const Room = props => {
             alert('Only the owner can change the video');
             return;
         }
+        if(urlVideo=='' || urlVideo==null){
+            alert('Put some url')
+            return;
+        };
         //console.log(userName)
         let video = `//www.youtube.com/embed/${embedUrl(urlVideo)}`;
         let video_json = { type: 'video_change', video }
@@ -91,9 +103,16 @@ const Room = props => {
         let message_json = { type: "message",name , message: currentMessage}
 
         roomChannel.send(message_json)
+        setCurrentMessage('')
         //console.log(userName)
         //console.log(currentMessage)
     }
+    const handleKeyUp = (event) => {
+        if (event.keyCode === 13) {
+            handleMessage();
+        }
+    }
+    
 
     return (
         <div className="main-room">
@@ -103,7 +122,7 @@ const Room = props => {
                         <iframe src={urlIFrame} className="video" frameBorder="1" allowFullScreen sandbox="allow-same-origin allow-scripts allow-popups allow-forms"></iframe>
                     </div>
                     <div className="insert">
-                        <input type="text" id="inputUsername" className="form-control" placeholder="video url" onChange={event => setUrlVideo(event.target.value)}/>
+                        <input type="text"  id="inputUsername" className="form-control" placeholder="video url" onChange={event => setUrlVideo(event.target.value)}/>
                         <button id="playVideo" className="play" onClick={handlePlay}><FiPlay/></button>
                     </div>
                 </div>
@@ -120,12 +139,14 @@ const Room = props => {
                                     className={message.user == userName ? 'sent' : 'received'}
                                     >
                                     <span className="user">{message.user == userName ? '' : message.user } </span>
-                                    {message.message}
+                                    <p className="message-field">
+                                        {message.message}
+                                    </p>
                                 </p>
                             ))}
                             </div>
                             <div id="send_message" className="send-field" onSubmit={handleMessage}>
-                                <input type="text" id="message" name="message" onChange={event => {setCurrentMessage(event.target.value)}}/>
+                                <input type="text" value={currentMessage } onKeyUp={handleKeyUp} onSubmit={handleMessage} id="message" maxLength = "40" name="message" onChange={event => {setCurrentMessage(event.target.value)}}/>
                                 <button onClick={handleMessage}>Send</button>
                             </div>
                         </div>

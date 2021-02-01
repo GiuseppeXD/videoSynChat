@@ -19,6 +19,10 @@
         
         display: flex;
         flex-direction: column;
+        input::placeholder{
+            color: rgb(38, 192, 115);
+            text-align: center;
+        }
         .form-control{
             height: 30px;
             justify-content: center;

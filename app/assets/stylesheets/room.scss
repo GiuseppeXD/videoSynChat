@@ -25,22 +25,33 @@
                 height: 100%;
                 .video{
                     height: 100%;
-                    width: 90%;
+                    width: 100% !important; 
                     background-color: #8a8f2d;
                 }
                 
             }
 
             .insert{
+                display: flex;
+                width: 100%;
+                margin-top:10px;
+               
                 .form-control{
+                    height: 40px !important;
+                    align-self: center;
+                    width: 95% !important;
+                    background-color: #76a857;
                     
-                    color: black;
-                    width: 90%;
-                    background-color: #4B7C2D;
+                }
+                input::placeholder{
+                    color: rgb(5, 150, 102) !important;
+                    padding: 10px;
                 }
                 .play{
-                    width:4%;
-                    margin:5px;
+                    height: 40px !important;
+                    width:5% !important;
+                    margin: 0 !important;
+                    margin-right:2px;
                 }
                 
             }
@@ -50,18 +61,21 @@
             
             flex-direction: column;
             background-color: #61bb53;
+            border-radius: 10px;
             height: 100%;
             width: 30% !important;
             display: flex;
 
             .room-title{
                 padding: 10px;
+                
                 .room-name{
                 
                     width:100%;
                     text-align: center;
                     margin-left: 0px !important;
                     background-color: #38772E;
+                    border-radius: 10px;
                     
                 }
             }
@@ -71,25 +85,32 @@
                 margin: 14px;
                 overflow: auto;
                 background-color: #187B08;
+                border-radius: 10px;
                 
                 .messages-field{
+                    
                     height: 100%;
                     
                     display: flex;
                     flex-direction: column;
                     justify-content: space-between;
                     .messages{
-                        
+                        max-width: 65ch;
                         display: flex;
                         flex-direction: column;
-                        
+                        flex-wrap: wrap;
+                        align-content: stretch;
+                        text-overflow: ellipsis;
                         .received {
+                            align-content: stretch;
+                            word-wrap: break-word;
                             margin-bottom: 2px;
                             background-color: rgb(172, 185, 136);
                             border-bottom-right-radius: 10px;
-                            width: max-content;
+                            
                             padding: 0px !important;
                             padding-right: 3px !important;
+                            justify-content: left;
                         
                             
     
@@ -98,16 +119,28 @@
                                 background-color: #8d9b0f !important;
                                 border-bottom-right-radius: 10px;
                                 border-top-right-radius: 10px;
-                                
+                                padding-right:5px;
+                            }
+                            .message-field{
+                                word-wrap: break-word;
+                                text-align: left;
                                 
                             }
                         }
                         .sent {
+                            align-content: stretch;
+                            word-wrap: break-word;
                             margin-bottom: 2px;
+                            justify-content: right;
                             padding:3px;
                             border-bottom-left-radius: 10px;
                             background-color: #e2df34 !important;
-                            align-self: flex-end;
+                            .message-field{
+                                word-wrap: break-word;
+                                text-align: right;
+                                
+                            }
+                            
                         }
                     }
     
@@ -125,6 +158,7 @@
                             align-self: flex-start;
                             border-radius: 10px;
                             border: 0;
+                            padding: 4px;
                         }
                         button {
                             margin-left:5px;
