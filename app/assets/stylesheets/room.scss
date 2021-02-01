@@ -1,0 +1,147 @@
+.main-room{
+    background-color: #C7F697;
+    width: 100vw;
+    height: 100vh;
+    overflow: auto;
+    
+
+    .video-chat{
+        display: flex;
+        align-items: stretch;
+        height: 100%;
+        width: 100%;
+        margin: 0 !important;
+        padding:10px;
+
+        .video-insert{
+            
+            float: left;
+            height: 70% !important;
+            width: 100%;
+            flex-direction: column;
+            padding: 20px;
+
+            .video-iframe{
+                height: 100%;
+                .video{
+                    height: 100%;
+                    width: 90%;
+                    background-color: #8a8f2d;
+                }
+                
+            }
+
+            .insert{
+                .form-control{
+                    
+                    color: black;
+                    width: 90%;
+                    background-color: #4B7C2D;
+                }
+                .play{
+                    width:4%;
+                    margin:5px;
+                }
+                
+            }
+        }
+
+        .chat-space{
+            
+            flex-direction: column;
+            background-color: #61bb53;
+            height: 100%;
+            width: 30% !important;
+            display: flex;
+
+            .room-title{
+                padding: 10px;
+                .room-name{
+                
+                    width:100%;
+                    text-align: center;
+                    margin-left: 0px !important;
+                    background-color: #38772E;
+                    
+                }
+            }
+            .chat-field{
+                height:100vh;
+                width: auto !important;
+                margin: 14px;
+                overflow: auto;
+                background-color: #187B08;
+                
+                .messages-field{
+                    height: 100%;
+                    
+                    display: flex;
+                    flex-direction: column;
+                    justify-content: space-between;
+                    .messages{
+                        
+                        display: flex;
+                        flex-direction: column;
+                        
+                        .received {
+                            margin-bottom: 2px;
+                            background-color: rgb(172, 185, 136);
+                            border-bottom-right-radius: 10px;
+                            width: max-content;
+                            padding: 0px !important;
+                            padding-right: 3px !important;
+                        
+                            
+    
+                            .user{
+                                font-weight: 1000;
+                                background-color: #8d9b0f !important;
+                                border-bottom-right-radius: 10px;
+                                border-top-right-radius: 10px;
+                                
+                                
+                            }
+                        }
+                        .sent {
+                            margin-bottom: 2px;
+                            padding:3px;
+                            border-bottom-left-radius: 10px;
+                            background-color: #e2df34 !important;
+                            align-self: flex-end;
+                        }
+                    }
+    
+                    
+    
+                    .send-field{
+                        
+                        display: flex;
+                        width: 95% !important;
+                        
+                        margin: 10px;
+                        input{
+                            height: 30px;
+                            width: 90%;
+                            align-self: flex-start;
+                            border-radius: 10px;
+                            border: 0;
+                        }
+                        button {
+                            margin-left:5px;
+                            height: 100%;
+                            width: 30% !important;
+                            border-radius: 20px;
+                            border: 0;
+                            background-color: tomato;
+                            color: white;
+                        }
+                    }
+                }
+                
+            }
+        }
+            
+    }
+}
+
+

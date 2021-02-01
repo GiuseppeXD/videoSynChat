@@ -1,0 +1,40 @@
+.main{
+    background-color: #C7F697;
+    width: 100vw !important;
+    height: 100vh !important;
+    margin: 0px !important;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly !important;
+   
+    .header{
+        align-self: center;
+        
+    }
+    .sub-header{
+        align-self: center;
+        
+    }
+    .input-group{
+        
+        display: flex;
+        flex-direction: column;
+        .form-control{
+            height: 30px;
+            justify-content: center;
+            align-self: center !important;
+            border-radius: 10px;
+            border: 0;
+            
+        }
+        .botton{
+            justify-content: center;
+            margin-top: 4px;
+            align-self: center;
+            width: 100px !important;
+        }
+        
+    }
+    
+
+}
